@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+            <link rel="stylesheet" href="{% static 'produtos/css/produtos_ver.css' %}">
+    </head>
+    <body>
+        <ul class="nav-bar">
+            <li><a href="{% url 'produtos:home' %}">Home</a></li>
+            <li><a href="{% url 'produtos:ver_produtos' %}">produtos</a></li>
+            <li><a href="{% url 'produtos:criar_produtos' %}">criar produto</a></li>
+        </ul>
+        <img src="{{ produto.img.url }}" alt="{{ produto.nome }}">
+        <h1>{{ produto.nome }}</h1>
+        <p>{{ produto.descricao }}</p>
+    </body>
+</html>

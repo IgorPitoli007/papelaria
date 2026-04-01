@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'produtos/css/produtos_ver.css' %}">
+    <title>Login</title>
+</head>
+<body>
+    <ul class="nav-bar">
+        <li><a href="{% url 'usuario:home' %}">Home</a></li>
+        <li><a href="{% url 'usuario:login' %}">Login</a></li>
+    </ul>
+    <div class="container_form_editar-criar">
+        <form action="{% url 'usuario:login_tratar' %}" method="post" class="form_editar-criar">
+            {% csrf_token %}
+            <br>
+            <label for="email">qual o seu email?</label>
+            <br>
+            <input type="email" name="email" id="" required>
+            <br>
+            <label for="senha">qual a sua senha?</label>
+            <br>
+            <input type="password" name="senha" id="" required>
+            <br>
+            <input type="submit" value="fazer login">
+        </form>
+</body>
+</html>

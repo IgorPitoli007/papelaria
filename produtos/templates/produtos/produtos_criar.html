@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <link rel="stylesheet" href="{% static 'produtos/css/produtos_ver.css' %}">
+</head>
+<body>
+    <ul class="nav-bar">
+        <li><a href="{% url 'produtos:home' %}">Home</a></li>
+        <li><a href="{% url 'produtos:ver_produtos' %}">produtos</a></li>
+        <li><a href="{% url 'produtos:criar_produtos' %}">criar produto</a></li>
+    </ul>
+    <div class="container_form_editar-criar">
+        <form action="{% url 'produtos:criar' %}" method="post" enctype="multipart/form-data" class="form_editar-criar">
+            {% csrf_token %}
+            <br>
+            <label for="img">qual a foto do produto?</label>
+            <br>
+            <input type="file" name="img" id="" required>
+            <br>
+            <label for="nome">qual o nome do produto?</label>
+            <br>
+            <input type="nome" name="nome" id="" required>
+            <br>
+            <label for="marca">qual a marca do produto?</label>
+            <br>
+            <input type="marca" name="marca" id="" required>
+            <br>
+            <label for="descricao">qual a descrição do produto?</label>
+            <br>
+            <input type="descricao" name="descricao" id="" required>
+            <br>
+            <label for="preco">qual o valor de venda do produto?</label>
+            <br>
+            <input type="preco" name="preco" id="" required>
+            <br>
+            <label for="categoria">qual categoria o produto pertence?</label>
+            <br>
+            <select name="categoria" id="categoria" required>
+                <option value="">-- Selecione --</option>
+                <option value="ESCRITA">Escrita e Correção</option>
+                <option value="PAPEIS">Papéis e Cadernos</option>
+                <option value="ORG">Organização e Arquivamento</option>
+                <option value="ARTES">Artes e Criatividade</option>
+                <option value="ESCOLAR">Materiais Escolares e Escritório</option>
+            </select>
+            <br>
+            <input type="submit" value="criar produto">
+        </form>
+    </div>
+</body>
+</html>

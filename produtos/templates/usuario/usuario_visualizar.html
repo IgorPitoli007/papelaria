@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+            <link rel="stylesheet" href="{% static 'produtos/css/produtos_ver.css' %}">
+    </head>
+    <body>
+        <style>
+            div{
+                width: 40%;
+                margin-left:20%;
+                display: inline-block;
+                margin-top: 50px;
+                vertical-align: top;
+            }
+            img{
+                width: 25%;
+                height: auto;
+                display: inline-block;
+            }
+        </style>
+        <ul class="nav-bar">
+            <li><a href="{% url 'usuario:home' %}">Home</a></li>
+            <li><a href="{% url 'usuario:login' %}">login</a></li>
+        </ul>
+        <img src="{{ produto.img.url }}" alt="{{ produto.nome }}">
+        <div>
+            <h1>{{ produto.nome }}</h1>
+            <p>{{ produto.descricao }}</p>
+        </div>
+    </body>
+</html>

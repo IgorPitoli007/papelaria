@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="{% static 'produtos/css/produtos_ver.css' %}">
+    </head>
+    <body>
+        <style>
+            .produto {
+                border: 2px solid black;
+                border-radius: 5px;
+                width: 250px;
+                margin-left: 23.53px; 
+                margin-bottom: 10px;
+                box-sizing: border-box;
+                display: inline-block;
+                text-align: left;
+            }
+        </style>
+        <ul class="nav-bar">
+            <li><a href="{% url 'usuario:home' %}">Home</a></li>
+            <li><a href="{% url 'usuario:login' %}">Login</a></li>
+        </ul>
+        <form action="{% url 'usuario:home' %}" method="post">
+            {% csrf_token %}
+            <label for="buscar">pesquisar</label>
+            <input type="search" name="buscar" id="">
+            <select name="categoria" id="categoria">
+                <option value="">filtro de categoria</option>
+                <option value="ESCRITA" {% if produto.categoria == 'ESCRITA' %}selected{% endif %}>Escrita e Correção</option>
+                <option value="PAPEIS" {% if produto.categoria == 'PAPEIS' %}selected{% endif %}>Papéis e Cadernos</option>
+                <option value="ORG" {% if produto.categoria == 'ORG' %}selected{% endif %}>Organização e Arquivamento</option>
+                <option value="ARTES" {% if produto.categoria == 'ARTES' %}selected{% endif %}>Artes e Criatividade</option>
+                <option value="ESCOLAR" {% if produto.categoria == 'ESCOLARA' %}selected{% endif %}>Materiais Escolares e Escritório</option>
+            </select>
+            <input type="submit" value="filtrar categoria">
+        </form>
+            {% if escrita %}
+                    <h2>Escrita e Correção</h2>
+                        {% for produto in escrita %}
+                            <div class="produto">
+                                <a href="{% url 'usuario:visualizar' produto.id %}"> 
+                                    <img src="{{ produto.img.url }}" alt="{{ produto.nome }}">
+                                    <p>{{ produto.nome }}</p>
+                                    <p>{{ produto.marca }}</p>
+                                    <p>R$ {{ produto.preco }}</p>
+                                </a> 
+                            </div>
+                        {% endfor %}
+            {% endif %}
+            {% if papeis %}
+                    <h2>Papéis e Cadernos</h2>
+                        {% for produto in papeis %}
+                            <div class="produto">
+                                <a href="{% url 'usuario:visualizar' produto.id %}"> 
+                                    <img src="{{ produto.img.url }}" alt="{{ produto.nome }}">
+                                    <p>{{ produto.nome }}</p>
+                                    <p>{{ produto.marca }}</p>
+                                    <p>R$ {{ produto.preco }}</p>
+                                </a> 
+                            </div>
+                        {% endfor %}
+            {% endif %}
+            {% if org %}
+                    <h2>Organização e Arquivamento</h2>
+                        {% for produto in org %}
+                           <div class="produto">
+                                <a href="{% url 'usuario:visualizar' produto.id %}"> 
+                                    <img src="{{ produto.img.url }}" alt="{{ produto.nome }}">
+                                    <p>{{ produto.nome }}</p>
+                                    <p>{{ produto.marca }}</p>
+                                    <p>R$ {{ produto.preco }}</p>
+                                </a> 
+                            </div>
+                        {% endfor %}
+            {% endif %}
+            {% if artes %}
+                    <h2>Artes e Criatividade</h2>
+                        {% for produto in artes %}
+                        <div class="produto">
+                            <a href="{% url 'usuario:visualizar' produto.id %}"> 
+                                <img src="{{ produto.img.url }}" alt="{{ produto.nome }}">
+                                <p>{{ produto.nome }}</p>
+                                <p>{{ produto.marca }}</p>
+                                <p>R$ {{ produto.preco }}</p>
+                            </a> 
+                        </div>
+                        {% endfor %}
+            {% endif %}
+            {% if escolar %}
+                    <h2>Materiais Escolares e Escritório</h2>
+                        {% for produto in escolar %}
+                        <div class="produto">
+                            <a href="{% url 'usuario:visualizar' produto.id %}"> 
+                                <img src="{{ produto.img.url }}" alt="{{ produto.nome }}">
+                                <p>{{ produto.nome }}</p>
+                                <p>{{ produto.marca }}</p>
+                                <p>R$ {{ produto.preco }}</p>
+                            </a> 
+                        </div>
+                        {% endfor %}
+            {% endif %}
+    </body>
+</html>

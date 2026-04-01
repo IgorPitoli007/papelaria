@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <link rel="stylesheet" href="{% static 'produtos/css/produtos_ver.css' %}">
+</head>
+<body>
+    <ul class="nav-bar">
+        <li><a href="{% url 'produtos:home' %}">Home</a></li>
+        <li><a href="{% url 'produtos:ver_produtos' %}">produtos</a></li>
+        <li><a href="{% url 'produtos:criar_produtos' %}">criar produto</a></li>
+    </ul>
+    <form action="{% url 'produtos:editar' produto.id %}" method="post" enctype="multipart/form-data" class="form_editar-criar">
+        {% csrf_token %}
+        <br>
+        <label for="img">qual a foto do produto?</label>
+        <br>
+        <p>Imagem atual:</p>
+        <img src="{{ produto.img.url }}" alt="{{ produto.nome }}" width="150">
+        <input type="file" name="img" id="" value="{{ produto.img.url }}">
+        <br>
+        <label for="nome">qual o nome do produto?</label>
+        <br>
+        <input type="nome" name="nome" id="" value="{{ produto.nome }}" required>
+        <br>
+        <label for="marca">qual a marca do produto?</label>
+        <br>
+        <input type="marca" name="marca" id="" value="{{ produto.marca }}" required>
+        <br>
+        <label for="descricao">qual a descrição do produto?</label>
+        <br>
+        <input type="descricao" name="descricao" id="" value="{{ produto.descricao }}" required>
+        <br>
+        <label for="preco">qual o valor de venda do produto?</label>
+        <br>
+        <input type="preco" name="preco" id="" value="{{ produto.preco }}" required>
+        <br>
+        <label for="categoria" >qual categoria o produto pertence?</label>
+        <br>
+        <select name="categoria" id="categoria">
+            <option value="">-- Selecione --</option>
+            <option value="ESCRITA" {% if produto.categoria == 'ESCRITA' %}selected{% endif %}>Escrita e Correção</option>
+            <option value="PAPEIS" {% if produto.categoria == 'PAPEIS' %}selected{% endif %}>Papéis e Cadernos</option>
+            <option value="ORG" {% if produto.categoria == 'ORG' %}selected{% endif %}>Organização e Arquivamento</option>
+            <option value="ARTES" {% if produto.categoria == 'ARTES' %}selected{% endif %}>Artes e Criatividade</option>
+            <option value="ESCOLAR" {% if produto.categoria == 'ESCOLARA' %}selected{% endif %}>Materiais Escolares e Escritório</option>
+        </select>
+        <br>
+        <input type="submit" value="atualizar produto">
+    </form>
+</body>
+</html>

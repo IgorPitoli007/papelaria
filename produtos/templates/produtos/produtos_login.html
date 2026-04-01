@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <form action="{% url 'produtos:login' %}" method="post">
+        {% csrf_token %}
+        <label for="email">email:</label>
+        <input type="email" name="email" id="">
+        <label for="senha">senha:</label>
+        <input type="password" name="senha" id="">
+        <input type="submit" value="fazer login">
+    </form>
+</body>
+</html>

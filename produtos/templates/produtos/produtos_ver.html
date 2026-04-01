@@ -1,0 +1,135 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="{% static 'produtos/css/produtos_ver.css' %}">
+    </head>
+    <body>
+        <style>
+            .produto {
+                border: 2px solid black;
+                border-radius: 5px;
+                width: 250px;
+                margin-left: 23.53px; 
+                margin-bottom: 10px;
+                box-sizing: border-box;
+                display: inline-block;
+                text-align: left;
+            }
+        </style>
+        <ul class="nav-bar">
+            <li><a href="{% url 'produtos:home' %}">Home</a></li>
+            <li><a href="{% url 'produtos:ver_produtos' %}">produtos</a></li>
+            <li><a href="{% url 'produtos:criar_produtos' %}">criar produto</a></li>
+        </ul>
+            {% if escrita %}
+                    <h2>Escrita e Correção</h2>
+                        {% for produto in escrita %}
+                            <a href="{% url 'produtos:visualizar' produto.id %}">
+
+                                <div class="produto">
+                                    <img src="{{ produto.img.url }}" alt="{{ produto.nome }}">
+                                    <p>{{ produto.nome }}</p>
+                                    <p>{{ produto.marca }}</p>
+                                    <p>R$ {{ produto.preco }}</p>
+                                    <form action="{% url 'produtos:deletar' produto.id %}" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit" class="excluir">excluir</button>
+                                    </form>
+                                    <form action="{% url 'produtos:editar_produtos' produto.id %}" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit" class="editar">editar</button>
+                                    </form>
+                                </div>
+                            </a> 
+                        {% endfor %}
+            {% endif %}
+            {% if papeis %}
+                    <h2>Papéis e Cadernos</h2>
+                        {% for produto in papeis %}
+                            <a href="{% url 'produtos:visualizar' produto.id %}">
+                                <div class="produto">
+                                    <img src="{{ produto.img.url }}" alt="{{ produto.nome }}">
+                                    <p>{{ produto.nome }}</p>
+                                    <p>{{ produto.marca }}</p>
+                                    <p>R$ {{ produto.preco }}</p>
+                                    <form action="{% url 'produtos:deletar' produto.id %}" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit" class="excluir">excluir</button>
+                                    </form>
+                                    <form action="{% url 'produtos:editar_produtos' produto.id %}" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit" class="editar">editar</button>
+                                    </form>
+                                </div>
+                            </a> 
+                        {% endfor %}
+            {% endif %}
+            {% if org %}
+                    <h2>Organização e Arquivamento</h2>
+                        {% for produto in org %}
+                            <a href="{% url 'produtos:visualizar' produto.id %}">
+                                <div class="produto">
+                                    <img src="{{ produto.img.url }}" alt="{{ produto.nome }}">
+                                    <p>{{ produto.nome }}</p>
+                                    <p>{{ produto.marca }}</p>
+                                    <p>R$ {{ produto.preco }}</p>
+                                    <form action="{% url 'produtos:deletar' produto.id %}" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit" class="excluir">excluir</button>
+                                    </form>
+                                    <form action="{% url 'produtos:editar_produtos' produto.id %}" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit" class="editar">editar</button>
+                                    </form>
+                                </div>
+                            </a> 
+                        {% endfor %}
+            {% endif %}
+            {% if artes %}
+                    <h2>Artes e Criatividade</h2>
+                        {% for produto in artes %}
+                            <a href="{% url 'produtos:visualizar' produto.id %}">
+                                <div class="produto">
+                                    <img src="{{ produto.img.url }}" alt="{{ produto.nome }}">
+                                    <p>{{ produto.nome }}</p>
+                                    <p>{{ produto.marca }}</p>
+                                    <p>R$ {{ produto.preco }}</p>
+                                    <form action="{% url 'produtos:deletar' produto.id %}" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit" class="excluir">excluir</button>
+                                    </form>
+                                    <form action="{% url 'produtos:editar_produtos' produto.id %}" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit" class="editar">editar</button>
+                                    </form>
+                                </div>
+                            </a> 
+                        {% endfor %}
+            {% endif %}
+            {% if escolar %}
+                    <h2>Materiais Escolares e Escritório</h2>
+                        {% for produto in escolar %}
+                            <a href="{% url 'produtos:visualizar' produto.id %}">
+                                <div class="produto">
+                                    <img src="{{ produto.img.url }}" alt="{{ produto.nome }}">
+                                    <p>{{ produto.nome }}</p>
+                                    <p>{{ produto.marca }}</p>
+                                    <p>R$ {{ produto.preco }}</p>
+                                    <form action="{% url 'produtos:deletar' produto.id %}" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit" class="excluir">excluir</button>
+                                    </form>
+                                    <form action="{% url 'produtos:editar_produtos' produto.id %}" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit" class="editar">editar</button>
+                                    </form>
+                                </div>
+                            </a> 
+                        {% endfor %}
+            {% endif %}
+    </body>
+</html>
